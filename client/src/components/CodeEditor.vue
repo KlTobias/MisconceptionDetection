@@ -1,6 +1,8 @@
 <template>
-  <h2 class="text-2xl">💻 Code Editor</h2>
-  <div ref="editorEl" class="w-full h-64 border rounded overflow-hidden" aria-label="Code editor" />
+  <div class="flex flex-col">
+    <h2 class="text-2xl">💻 Code Editor</h2>
+    <div ref="editorEl" class="w-full h-64 border rounded overflow-hidden" aria-label="Code editor" />
+  </div>
 </template>
 
 <script setup lang="ts">

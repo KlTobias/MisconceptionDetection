@@ -10,8 +10,7 @@
         <a href="https://tha.de/misconceptions/" class="underline">List of all Misconceptions</a>
       </div>
 
-      <textarea v-model="code" rows="12" class="w-full p-3 border rounded entry-bg"
-        placeholder="Paste code here"></textarea>
+      <CodeEditor v-model="code" />
 
       <div class="mt-3">
         <button @click="analyze" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Analyze</button>
@@ -28,6 +27,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import ThemeToggle from './components/ThemeToggle.vue'
+import CodeEditor from './components/CodeEditor.vue'
 
 const code = ref('')
 const result = ref('')

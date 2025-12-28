@@ -25,30 +25,11 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { computed } from 'vue'
+import { useThemeStore } from '../stores/theme'
 
-// support multiple themes; currently 'light' and 'dark'
-const currentTheme = ref<'light' | 'dark'>('light')
+const store = useThemeStore()
+const currentTheme = computed(() => store.theme)
 
-const sync = () => {
-  const attr = document.documentElement.getAttribute('data-theme')
-  currentTheme.value = attr === 'dark' ? 'dark' : 'light'
-}
-
-const setTheme = (theme: 'light' | 'dark') => {
-  currentTheme.value = theme
-  document.documentElement.setAttribute('data-theme', theme)
-  // keep Tailwind dark class in sync for compatibility
-  document.documentElement.classList.toggle('dark', theme === 'dark')
-  localStorage.setItem('theme', theme)
-}
-
-const toggle = () => {
-  const next = currentTheme.value === 'light' ? 'dark' : 'light'
-  setTheme(next)
-}
-
-onMounted(() => {
-  sync()
-})
+const toggle = () => store.toggle()
 </script>

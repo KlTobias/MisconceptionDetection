@@ -1,16 +1,16 @@
 import { createApp } from 'vue'
+import { createPinia } from 'pinia'
 import App from './App.vue'
 import './styles/main.css'
 
-const setInitialTheme = () => {
-  const saved = localStorage.getItem('theme')
-  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
-  const theme = saved ? saved : (prefersDark ? 'dark' : 'light')
-  // set a data attribute so we can support multiple themes in the future
-  document.documentElement.setAttribute('data-theme', theme)
-  // keep Tailwind 'dark:' utilities working by syncing the class
-  document.documentElement.classList.toggle('dark', theme === 'dark')
-}
-setInitialTheme()
+import { useThemeStore } from './stores/theme'
 
-createApp(App).mount('#app')
+const pinia = createPinia()
+const app = createApp(App)
+app.use(pinia)
+
+// initialize theme via the store (reads localStorage and prefers-color-scheme)
+const themeStore = useThemeStore()
+themeStore.init()
+
+app.mount('#app')

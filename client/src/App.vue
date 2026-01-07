@@ -35,7 +35,7 @@ const handleHighlightLines = (lines: number[] | null) => {
   highlightLines.value = lines && lines.length ? lines : null
 }
 
-const useMock = false // set to true to use the built-in mock
+const useMock = true // set to true to use the built-in mock
 
 const analyze = async () => {
   if (code.value.trim() === '') {

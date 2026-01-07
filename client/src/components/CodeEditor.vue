@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col">
     <h2 class="text-2xl">💻 Code Editor</h2>
-    <div ref="editorEl" class="w-full h-64 border rounded overflow-hidden" aria-label="Code editor" />
+    <div ref="editorEl" class="w-full h-[75svh] mt-3 border rounded overflow-hidden" aria-label="Code editor" />
   </div>
 </template>
 
@@ -9,6 +9,7 @@
 import { ref, onMounted, onBeforeUnmount, watch } from 'vue'
 import * as monaco from 'monaco-editor'
 import { useThemeStore } from '../stores/theme'
+import { useResponseStore } from '../stores/response';
 
 const props = defineProps<{ modelValue?: string, highlightLines?: number[] | null }>()
 const emit = defineEmits<{ (e: 'update:modelValue', value: string): void }>()
@@ -17,6 +18,7 @@ const editorEl = ref<HTMLDivElement | null>(null)
 let editor: monaco.editor.IStandaloneCodeEditor | null = null
 
 const themeStore = useThemeStore()
+const responseStore = useResponseStore();
 
 onMounted(() => {
   const initial = props.modelValue ?? ''
@@ -88,6 +90,13 @@ watch(
     monaco.editor.setTheme(t === 'dark' ? 'vs-dark' : 'vs')
   }
 )
+
+watch( () => responseStore.state, (newState) => {
+  if (newState == 'READY') {
+    applyHighlights(null)
+    editor?.setValue('')
+  }
+})
 
 onBeforeUnmount(() => {
   // clear decorations

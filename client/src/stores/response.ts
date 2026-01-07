@@ -12,5 +12,10 @@ export const useResponseStore = defineStore('response', () => {
   const response = ref<Misconception[] | null>(null)
   const state = ref<string>(ANALYZINGSTATE.READY)
 
-  return { response, state }
+  function clearResponse() {
+    response.value = null
+    state.value = ANALYZINGSTATE.READY
+  }
+
+  return { response, state, clearResponse }
 })

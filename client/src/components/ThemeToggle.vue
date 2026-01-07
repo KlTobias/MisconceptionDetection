@@ -1,6 +1,6 @@
 <template>
   <button @click="toggle" :aria-pressed="currentTheme === 'dark'"
-    class="p-2 rounded hover:bg-gray-200 dark:hover:bg-gray-700"
+    class="p-2 rounded"
     :title="currentTheme === 'dark' ? 'Switch to light' : 'Switch to dark'">
     <span v-if="currentTheme === 'dark'">
       <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24" fill="none"

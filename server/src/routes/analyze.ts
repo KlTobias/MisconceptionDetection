@@ -28,8 +28,68 @@ router.post("/", async (req, res) => {
             : mockResponse;
       } else {
         let sample_response =
-          '{"findings":[{"id":"Array_Length_as_Number","lines":[8,16,26],"explanation":"Lines 8, 16, and 26 use a fixed number (10) in loop conditions while iterating over arrays position and speed, instead of using position.length or speed.length, matching the catalog’s indicator of hardcoding array lengths. The \'when_not_a_misconception\' cases do not apply because the fixed number is not for a specific unrelated purpose and no variable representing the arrays’ length is used."},{"id":"One_Loop_per_Array","lines":[8,9,10,11,12,16,17,18,19,20],"explanation":"Lines 8–12 initialize position and lines 16–20 initialize speed in separate loops, even though the arrays are the same length and logically connected (parallel arrays for positions and speeds). This matches the catalog’s description. The \'when_not_a_misconception\' cases do not apply because the arrays have the same length and the processing logic (initialization) is not fundamentally different."}]}';
+          '{\"findings\":[{\"id\":\"One_Loop_per_Array\",\"lines\":[35,36,37,38,39,40,41,43,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59],\"explanation\":\"The array balls is iterated twice in draw(): first loop on lines 35–41 draws the balls (conditionally via bSwitch[r]), and a second loop on lines 43–59 updates positions and handles bouncing. According to the catalog, using separate loops for related, same-length data obscures their connection and adds redundancy. These two passes could be combined into one loop that draws (conditionally) and then updates each ball in sequence.\"},{\"id\":\"Array_Length_as_Number\",\"lines\":[1,2,30,35,37],\"explanation\":\"bSwitch is created with a hardcoded length 10 on line 2 while balls has its first dimension fixed at 10 on line 1. The code then indexes bSwitch using r that ranges over balls.length (lines 35 and 37; also assigned on line 30), implicitly relying on both arrays being the same size. Hardcoding 10 makes this fragile if balls’ size changes. The catalog recommends using the .length of the related array instead, e.g., new boolean[balls.length].\"},{\"id\":\"Array_Length_Only_in_Loop_Condition\",\"lines\":[2,10,12,35,43],\"explanation\":\"The code uses .length inside loop conditions (lines 10, 12, 35, 43) but hardcodes the related array size outside loops when initializing bSwitch (line 2). This matches the catalog indicator of avoiding .length outside loop conditions and hardcoding its value; bSwitch could be sized from balls.length to keep them aligned.\"}]}';
         data = JSON.parse(sample_response);
+
+        data = { "findings": [
+        {
+          "id": "Arrays_Grow",
+          "lines": [
+            7
+          ],
+          "explanation": "The code attempts to access elements of array 'b' with index 'i-3' where 'i' ranges from 3 to 4 (since 'c' has a length of 5 and 'i' starts from 3). This results in accessing 'b[0]' and 'b[1]', which is valid, but the misconception is hinted at because the code does not check if 'b' has enough elements. However, in this specific case, 'b' has 2 elements, so it works. Still, the code does not demonstrate the misconception directly. A more accurate finding is related to 'Inner_Arrays_Uniform' or other issues."
+        },
+        {
+          "id": "Inner_Arrays_Uniform",
+          "lines": [
+            1,
+            2,
+            5,
+            11
+          ],
+          "explanation": "The code snippet uses arrays 'a' and 'b' with different lengths and then iterates over array 'c', accessing elements from 'a' and 'b' based on the index. This demonstrates an understanding that arrays can be of different lengths and are not required to be uniform, which is contrary to the 'Inner_Arrays_Uniform' misconception. However, the code does not directly demonstrate this misconception; instead, it shows a correct handling of arrays of different lengths."
+        },
+        {
+          "id": "Array_Length_as_Number",
+          "lines": [
+            5
+          ],
+          "explanation": "The loop condition uses 'c.length', which is correct. However, if the code had used a hardcoded number instead of 'c.length', it would demonstrate this misconception. The code does not show this misconception."
+        },
+        {
+          "id": "Array_Indexing_Needs_Parentheses",
+          "lines": [
+            7,
+            9
+          ],
+          "explanation": "The code accesses array elements without unnecessary parentheses, e.g., 'b[i-3]' and 'a[i]'. This does not demonstrate the misconception."
+        },
+        {
+          "id": "Loops_for_Array_Index_Access",
+          "lines": [
+            5,
+            11
+          ],
+          "explanation": "The code uses a loop to iterate over 'c' and access elements from 'a' and 'b'. While it uses a loop, it's not because the index is unknown but to iterate over 'c'. The loop is necessary for the logic, so it doesn't directly demonstrate this misconception."
+        },
+        {
+          "id": "One_Loop_per_Array",
+          "lines": [
+            5,
+            11
+          ],
+          "explanation": "The code uses a single loop to populate 'c' by accessing elements from 'a' and 'b'. This is a correct practice and does not demonstrate the 'One_Loop_per_Array' misconception; instead, it shows an efficient use of a single loop to handle related arrays."
+        },
+        {
+          "id": "Array_Init_Needs_Curly_Brackets",
+          "lines": [
+            3
+          ],
+          "explanation": "The code initializes 'c' with 'new int[5]', which is correct for creating an array of a specific length. It does not demonstrate the misconception of using curly brackets to set the length."
+        }
+      ]
+        }
+        
       }
       console.log(
         "Using mock response for analysis:",
@@ -41,7 +101,7 @@ router.post("/", async (req, res) => {
       // Load misconceptions
       const misconception_catalog = JSON.parse(
         await readFile(
-          "src/misconception_catalog/misconceptions_v5.json",
+          "src/misconception_catalog/misconception_catalog.json", // Insert misconception catalog path here
           "utf8"
         )
       );
@@ -69,7 +129,7 @@ router.post("/", async (req, res) => {
 
       // Model call
       const response = await openai.responses.create({
-        model: "gpt-5",
+        model: "gpt-5", // Set desired model here
         input: [
           {
             role: "developer",

@@ -35,7 +35,7 @@ const handleHighlightLines = (lines: number[] | null) => {
   highlightLines.value = lines && lines.length ? lines : null
 }
 
-const useMock = true // set to true to use the built-in mock
+const useMock = false // set to true to use the built-in mock
 
 const analyze = async () => {
   if (code.value.trim() === '') {
@@ -55,7 +55,6 @@ const analyze = async () => {
     })
     const data = await res.json()
 
-    // data.misconceptions is the server response (mapped from model output)
     const mapped: Misconception[] =
       Array.isArray(data.misconceptions)
         ? data.misconceptions.map((m: any) => ({
@@ -73,27 +72,4 @@ const analyze = async () => {
     console.error(err)
   }
 }
-
-/* const analyze = async () => {
-  if (code.value.trim() === '') {
-    alert('Please enter some code to analyze.')
-    return
-  }
-  console.log('Analyzing code:', code.value)
-result.value = 'Analyzing...'
-  responseStore.state = ANALYZINGSTATE.ANALYZING
-  try {
-    const res = await fetch('/api/analyze', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ code: code.value })
-    })
-    const data = await res.json()
-    result.value = JSON.stringify(data, null, 2)
-    responseStore.state = ANALYZINGSTATE.FINISHED
-  } catch (err: unknown) {
-    result.value = 'Error: ' + String(err)
-    responseStore.state = ANALYZINGSTATE.READY
-  }
-} */
 </script>

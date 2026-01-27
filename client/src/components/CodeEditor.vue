@@ -108,7 +108,3 @@ onBeforeUnmount(() => {
   editor?.dispose()
 })
 </script>
-
-<style scoped>
-/* minimal styling left to tailwind classes in template */
-</style>

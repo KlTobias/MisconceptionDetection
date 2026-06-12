@@ -1,4 +1,3 @@
-# TODO before release: fill in real ORCIDs, the Zenodo DOI, and the release date.
 cff-version: 1.2.0
 message: "If you use this software, please cite it as below."
 type: software
@@ -26,10 +25,10 @@ authors:
     affiliation: "Augsburg Technical University of Applied Sciences"
     orcid: "https://orcid.org/0000-0001-5947-3003"  
 version: 1.0.0
-date-released: "2026-06-13"  # TODO: set actual release date
+date-released: "2026-06-13"
 license: MIT
-doi: 10.5281/zenodo.0000000  # TODO: replace with Zenodo DOI after deposit
-repository-code: "https://github.com/TODO/MisconceptionDetection"  # TODO
+doi: 10.5281/zenodo.20667055
+repository-code: "https://github.com/KlTobias/MisconceptionDetection" 
 keywords:
   - CS education
   - programming misconceptions

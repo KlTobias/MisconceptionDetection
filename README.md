@@ -10,7 +10,7 @@ explanations and highlighted in the editor.
 
 This software is the artefact accompanying the DELFI 2026 short paper
 *"Beyond Syntax Errors: Towards Detecting Conceptual Misconceptions in Student Code with
-LLMs"* (Kleiner, List, Müller, Kipp). <!-- TODO: add paper DOI and artefact DOI after publication -->
+LLMs"* (Kleiner, List, Müller, Kipp). (https://doi.org/10.5281/zenodo.20667054)
 
 ## Repository overview
 

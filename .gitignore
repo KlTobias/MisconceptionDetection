@@ -8,3 +8,7 @@ dist/
 **/npm-debug.log*
 **/yarn-debug.log*
 **/pnpm-debug.log*
+
+# internal planning documents - not part of the published artefact
+ARTEFACT_SUBMISSION_PLAN.md
+RELEASE_GUIDE.md

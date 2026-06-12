@@ -1,0 +1,36 @@
+{
+  "title": "Misconception Detector for Processing (Java)",
+  "description": "Prototype web application for LLM-based detection of programming misconceptions in novice Processing code. A curated misconception catalog is embedded in the model prompt; detected misconceptions are returned with relevant code positions and explanations. Artefact accompanying the DELFI 2026 short paper 'Beyond Syntax Errors: Towards Detecting Conceptual Misconceptions in Student Code with LLMs'.",
+  "upload_type": "software",
+  "license": "MIT",
+  "creators": [
+    {
+      "name": "Kleiner, Tobias",
+      "affiliation": "Technische Hochschule Augsburg",
+      "orcid": "0009-0001-7049-1971"
+    },
+    {
+      "name": "List, Corinna",
+      "affiliation": "Technische Hochschule Augsburg",
+      "orcid": "0009-0008-7366-5843"
+    },
+    {
+      "name": "Müller, Moritz",
+      "affiliation": "Technische Hochschule Augsburg",
+      "orcid": "0009-0000-2252-7979"
+    },
+    {
+      "name": "Kipp, Michael",
+      "affiliation": "Technische Hochschule Augsburg",
+      "orcid": "0000-0001-5947-3003"
+    }
+  ],
+  "keywords": [
+    "CS education",
+    "programming misconceptions",
+    "misconception detection",
+    "large language models",
+    "Processing"
+  ],
+  "notes": "Funded by the KI-AUX project, supported by the Stiftung Innovation in der Hochschullehre."
+}

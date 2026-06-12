@@ -24,10 +24,10 @@ authors:
     given-names: Michael
     affiliation: "Augsburg Technical University of Applied Sciences"
     orcid: "https://orcid.org/0000-0001-5947-3003"  
-version: 1.0.0
-date-released: "2026-06-13"
+version: 1.0.1
+date-released: "2026-06-12"
 license: MIT
-doi: 10.5281/zenodo.20667055
+doi: 10.5281/zenodo.20667054
 repository-code: "https://github.com/KlTobias/MisconceptionDetection" 
 keywords:
   - CS education

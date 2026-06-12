@@ -1,6 +1,10 @@
 {
   "name": "misconception-detection",
   "private": true,
+  "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  },
   "workspaces": [
     "client",
     "server",

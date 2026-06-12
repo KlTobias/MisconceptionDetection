@@ -1,0 +1,53 @@
+# TODO before release: fill in real ORCIDs, the Zenodo DOI, and the release date.
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+type: software
+title: "Misconception Detector for Processing (Java)"
+abstract: >-
+  Prototype web application for LLM-based detection of programming
+  misconceptions in novice Processing code. A curated misconception catalog
+  is embedded in the model prompt; detected misconceptions are returned with
+  relevant code positions and explanations.
+authors:
+  - family-names: Kleiner
+    given-names: Tobias
+    affiliation: "Augsburg Technical University of Applied Sciences"
+    orcid: "https://orcid.org/0009-0001-7049-1971"  
+  - family-names: List
+    given-names: Corinna
+    affiliation: "Augsburg Technical University of Applied Sciences"
+    orcid: "https://orcid.org/0009-0008-7366-5843"  
+  - family-names: "Müller"
+    given-names: Moritz
+    affiliation: "Augsburg Technical University of Applied Sciences"
+    orcid: "https://orcid.org/0009-0000-2252-7979"
+  - family-names: Kipp
+    given-names: Michael
+    affiliation: "Augsburg Technical University of Applied Sciences"
+    orcid: "https://orcid.org/0000-0001-5947-3003"  
+version: 1.0.0
+date-released: "2026-06-13"  # TODO: set actual release date
+license: MIT
+doi: 10.5281/zenodo.0000000  # TODO: replace with Zenodo DOI after deposit
+repository-code: "https://github.com/TODO/MisconceptionDetection"  # TODO
+keywords:
+  - CS education
+  - programming misconceptions
+  - misconception detection
+  - large language models
+  - Processing
+preferred-citation:
+  type: conference-paper
+  title: "Beyond Syntax Errors: Towards Detecting Conceptual Misconceptions in Student Code with LLMs"
+  authors:
+    - family-names: Kleiner
+      given-names: Tobias
+    - family-names: List
+      given-names: Corinna
+    - family-names: "Müller"
+      given-names: Moritz
+    - family-names: Kipp
+      given-names: Michael
+  conference:
+    name: "DELFI 2026"
+  year: 2026

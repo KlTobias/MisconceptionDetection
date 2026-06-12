@@ -2,7 +2,7 @@ import { Router } from "express";
 import Ajv from "ajv";
 import OpenAI from "openai";
 import { readFile } from "fs/promises";
-import { withLineNumbers, stripComments } from "../utils/codePreprocessors.ts";
+import { withLineNumbers, stripComments } from "../utils/codePreprocessors";
 import dotenv from "dotenv";
 dotenv.config();
 
